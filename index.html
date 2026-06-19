@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Get Set Admit is a platform for students to get information about colleges and exams." />
     <title>Get Set Admit</title>
-    <!-- Tab Logo Updated -->
     <link rel="icon" type="image/png" href="./assets/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -55,21 +54,34 @@
         .floating-element { animation: float 6s ease-in-out infinite; }
         .floating-element-delayed { animation: float 6s ease-in-out 3s infinite; }
         .marquee-container { overflow: hidden; white-space: nowrap; display: flex; align-items: center; width: 100%; position: relative; }
-        .marquee-container::before, .marquee-container::after { content: ''; position: absolute; top: 0; bottom: 0; width: 50px; z-index: 2; }
+        .marquee-container::before, .marquee-container::after { content: ''; position: absolute; top: 0; bottom: 0; width: 30px; z-index: 2; }
+        @media (min-width: 768px) {
+            .marquee-container::before, .marquee-container::after { width: 50px; }
+        }
         .marquee-container::before { left: 0; background: linear-gradient(to right, #ffffff, transparent); }
         .marquee-container::after { right: 0; background: linear-gradient(to left, #ffffff, transparent); }
         
         .marquee-content { display: flex; animation: marquee 40s linear infinite; width: max-content; }
-        .marquee-content img { height: 50px; margin: 0 20px; object-fit: contain; filter: grayscale(20%); transition: filter 0.3s; }
+        .marquee-content img { height: 35px; margin: 0 15px; object-fit: contain; filter: grayscale(20%); transition: filter 0.3s; }
+        @media (min-width: 768px) {
+            .marquee-content img { height: 50px; margin: 0 20px; }
+        }
         .marquee-content img:hover { filter: grayscale(0%); }
-        .hero-text-large { font-size: 3.5rem; line-height: 1.2; letter-spacing: -0.02em; }
-        .hero-image-container { position: relative; }
-        .badge-left { position: absolute; top: 20%; left: -10%; background: white; padding: 10px 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); transform: rotate(-5deg); }
-        .badge-right { position: absolute; bottom: 20%; right: -10%; background: white; padding: 10px 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); transform: rotate(5deg); }
-        .info-card { border-radius: 24px; overflow: hidden; position: relative; transition: transform 0.3s ease; }
+        .hero-text-large { font-size: 2.5rem; line-height: 1.2; letter-spacing: -0.02em; }
+        @media (min-width: 768px) {
+            .hero-text-large { font-size: 3.5rem; }
+        }
+        .hero-image-container { position: relative; width: 100%; display: flex; justify-content: center; }
+        .badge-left { position: absolute; top: 10%; left: 0; background: white; padding: 8px 12px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: rotate(-5deg); z-index: 20; max-width: 150px; font-size: 0.75rem; }
+        .badge-right { position: absolute; bottom: 10%; right: 0; background: white; padding: 8px 12px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: rotate(5deg); z-index: 20; max-width: 150px; font-size: 0.75rem; }
+        @media (min-width: 768px) {
+            .badge-left { top: 20%; left: -10%; padding: 10px 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: none; font-size: 0.875rem; }
+            .badge-right { bottom: 20%; right: -10%; padding: 10px 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: none; font-size: 0.875rem; }
+        }
+        .info-card { border-radius: 24px; overflow: hidden; position: relative; transition: transform 0.3s ease; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
         .info-card:hover { transform: translateY(-5px); }
         .sticky-header { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #f3f4f6; }
-        .tab-btn { position: relative; transition: all 0.3s ease; }
+        .tab-btn { position: relative; transition: all 0.3s ease; flex: 1 1 auto; text-align: center; }
         .tab-btn.active { color: #3775ee; border-bottom-color: #3775ee; }
         .tab-btn.active::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 2px; background-color: #3775ee; }
         .tab-content { display: none; animation: fadeIn 0.5s ease-in-out; }
@@ -78,404 +90,429 @@
         .custom-blob { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
         .slick-prev:before, .slick-next:before { color: #3775ee; font-size: 24px; }
         
-        .mascot-img { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .mascot-img:hover { transform: scale(1.1) translateY(-10px); }
+        .mascot-img { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); max-width: 100%; height: auto; }
+        .mascot-img:hover { transform: scale(1.05) translateY(-10px); }
+        
+        /* Mobile menu fixes */
+        #mobile-nav { display: none; width: 100%; background: white; position: absolute; top: 100%; left: 0; padding: 1rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); z-index: 40; border-top: 1px solid #f3f4f6;}
+        #mobile-nav.active { display: flex; flex-direction: column; align-items: flex-start; }
+        #mobile-nav a, #mobile-nav button { width: 100%; text-align: left; padding: 0.75rem 0; }
+        
+        /* Hide scrollbar for tabs on mobile */
+        .tabs-container { scrollbar-width: none; -ms-overflow-style: none; }
+        .tabs-container::-webkit-scrollbar { display: none; }
     </style>
 </head>
 
-<body class="bg-backgroundColor text-gray-800">
+<body class="bg-backgroundColor text-gray-800 overflow-x-hidden">
 
-    <header class="py-4 px-4 md:px-8 lg:px-16 sticky-header transition-shadow duration-300">
+    <header class="py-3 px-4 md:py-4 md:px-8 lg:px-16 sticky-header transition-shadow duration-300 relative">
         <div class="flex items-center justify-between">
-            <div class="flex items-center cursor-pointer" onclick="handleLoginRedirect(event)">
-                <!-- Navbar Logo Updated -->
-                <img src="./assets/logo.png" alt="Get Set Admit" class="w-8 md:w-12 lg:w-16 mr-2" onerror="this.src='https://via.placeholder.com/64?text=Logo'" />
+            <div class="flex items-center cursor-pointer z-50" onclick="handleLoginRedirect(event)">
+                <img src="./assets/logo.png" alt="Get Set Admit" class="w-8 md:w-10 lg:w-16 mr-2" onerror="this.src='https://via.placeholder.com/64?text=Logo'" />
             </div>
             
-            <div class="lg:hidden">
-                <button type="button" id="menu-toggle" class="text-gray-600">
+            <div class="lg:hidden z-50">
+                <button type="button" id="menu-toggle" class="text-gray-600 focus:outline-none p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
             
-            <nav class="hidden lg:flex lg:justify-center lg:flex-1 space-x-8 items-center">
+            <nav class="hidden lg:flex lg:justify-center lg:flex-1 space-x-6 xl:space-x-8 items-center">
                 <div class="relative group">
-                    <button type="button" class="nav-item text-gray-700 hover:text-primary font-medium transition-colors flex items-center py-2">
+                    <button type="button" class="nav-item text-gray-700 hover:text-primary font-medium transition-colors flex items-center py-2 text-sm xl:text-base">
                         Hero Products <i class="fas fa-chevron-down ml-1 text-[10px]"></i>
                     </button>
-                    <div class="absolute left-0 mt-0 w-64 bg-white rounded-xl shadow-xl py-2 hidden group-hover:block border border-gray-100 z-50">
+                    <div class="absolute left-0 mt-0 w-56 xl:w-64 bg-white rounded-xl shadow-xl py-2 hidden group-hover:block border border-gray-100 z-50">
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors">AI Career Compass</a>
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors">AI Counsellor (Chat, Call)</a>
                         <a href="#one-apply" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary transition-colors">One Apply</a>
                     </div>
                 </div>
 
-                <a href="#one-apply" class="nav-item text-primary font-bold bg-blue-50 px-5 py-2 rounded-full border border-blue-200 hover:bg-primary hover:text-white transition-all shadow-sm flex items-center">
-                    One Apply <i class="fas fa-bolt ml-2 text-yellow-400"></i>
+                <a href="#one-apply" class="nav-item text-primary font-bold bg-blue-50 px-4 xl:px-5 py-2 rounded-full border border-blue-200 hover:bg-primary hover:text-white transition-all shadow-sm flex items-center text-sm xl:text-base whitespace-nowrap">
+                    One Apply <i class="fas fa-bolt ml-1 xl:ml-2 text-yellow-400"></i>
                 </a>
                 
-                <a href="#about" class="nav-item text-gray-700 hover:text-primary font-medium transition-colors py-2">About</a>
-                <a href="#education-loan" class="nav-item text-gray-700 hover:text-primary font-medium transition-colors py-2">Education Loan</a>
-                <a href="#footer" class="nav-item text-gray-700 hover:text-primary font-medium transition-colors py-2">Contact us</a>
+                <a href="#about" class="nav-item text-gray-700 hover:text-primary font-medium transition-colors py-2 text-sm xl:text-base">About</a>
+                <a href="#education-loan" class="nav-item text-gray-700 hover:text-primary font-medium transition-colors py-2 text-sm xl:text-base whitespace-nowrap">Education Loan</a>
+                <a href="#footer" class="nav-item text-gray-700 hover:text-primary font-medium transition-colors py-2 text-sm xl:text-base whitespace-nowrap">Contact us</a>
             </nav>
             
-            <div class="hidden lg:flex items-center space-x-4">
-                <button type="button" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition" onclick="handleLoginRedirect(event)">
-                    <i class="fab fa-apple text-xl"></i>
+            <div class="hidden lg:flex items-center space-x-2 xl:space-x-4">
+                <button type="button" class="w-8 h-8 xl:w-10 xl:h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition" onclick="handleLoginRedirect(event)">
+                    <i class="fab fa-apple text-lg xl:text-xl"></i>
                 </button>
-                <button type="button" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition" onclick="handleLoginRedirect(event)">
-                    <i class="fab fa-google-play text-xl"></i>
+                <button type="button" class="w-8 h-8 xl:w-10 xl:h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition" onclick="handleLoginRedirect(event)">
+                    <i class="fab fa-google-play text-lg xl:text-xl"></i>
                 </button>
-                <button type="button" class="bg-primary text-white px-6 py-2 rounded-full font-medium hover:bg-primaryDark transition-colors" onclick="handleLoginRedirect(event)">Login</button>
+                <button type="button" class="bg-primary text-white px-4 xl:px-6 py-2 rounded-full font-medium hover:bg-primaryDark transition-colors text-sm xl:text-base" onclick="handleLoginRedirect(event)">Login</button>
             </div>
+        </div>
+        
+        <div id="mobile-nav">
+             <div class="w-full border-b border-gray-100 pb-2 mb-2">
+                <p class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Hero Products</p>
+                <a href="#" class="block pl-4 py-2 text-sm text-gray-700 hover:text-primary">AI Career Compass</a>
+                <a href="#" class="block pl-4 py-2 text-sm text-gray-700 hover:text-primary">AI Counsellor</a>
+                <a href="#one-apply" class="block pl-4 py-2 text-sm text-primary font-bold">One Apply <i class="fas fa-bolt text-yellow-400"></i></a>
+             </div>
+             <a href="#about" class="text-gray-700 hover:text-primary font-medium border-b border-gray-100">About</a>
+             <a href="#education-loan" class="text-gray-700 hover:text-primary font-medium border-b border-gray-100">Education Loan</a>
+             <a href="#footer" class="text-gray-700 hover:text-primary font-medium border-b border-gray-100">Contact us</a>
+             <div class="flex space-x-4 mt-4 justify-center w-full">
+                <button type="button" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-700" onclick="handleLoginRedirect(event)"><i class="fab fa-apple"></i></button>
+                <button type="button" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-700" onclick="handleLoginRedirect(event)"><i class="fab fa-google-play"></i></button>
+             </div>
+             <button type="button" class="w-full bg-primary text-white py-3 mt-4 rounded-full font-medium" onclick="handleLoginRedirect(event)">Login</button>
         </div>
     </header>
 
-    <section id="home" class="pt-16 pb-12 px-4 md:px-8 lg:px-16 flex flex-col lg:flex-row items-center justify-between">
+    <section id="home" class="pt-8 pb-12 px-4 md:pt-16 md:px-8 lg:px-16 flex flex-col lg:flex-row items-center justify-between">
         
-        <div class="lg:w-1/2 flex flex-col justify-center relative z-10">
-            <h1 class="hero-text-large font-bold text-gray-900 mb-6">
-                India's First <span class="text-primary">AI-Powered</span><br>Career Guidance Platform
+        <div class="lg:w-1/2 flex flex-col justify-center items-center lg:items-start text-center lg:text-left relative z-10 w-full">
+            <h1 class="hero-text-large font-bold text-gray-900 mb-4 md:mb-6">
+                India's First <br class="hidden md:block"/><span class="text-primary">AI-Powered</span><br>Career Guidance
             </h1>
             
-            <p class="text-xl text-gray-600 mb-8 max-w-lg">
+            <p class="text-lg md:text-xl text-gray-600 mb-6 md:mb-8 max-w-lg">
                 India's Only App that Helps Students Apply to 
                 <span class="font-bold text-gray-900">300+ Colleges</span> in Under 10 Minutes.
             </p>
             
-            <div class="marquee-container w-full max-w-2xl mb-8">
-                <div class="marquee-content" id="logo-marquee">
-                    </div>
+            <div class="marquee-container w-full max-w-2xl mb-6 md:mb-8 mx-auto lg:mx-0">
+                <div class="marquee-content" id="logo-marquee"></div>
             </div>
 
-            <div class="flex items-center">
-                <button type="button" class="bg-primary text-white text-lg px-8 py-4 rounded-full font-medium hover:bg-primaryDark transition-colors flex items-center shadow-lg transform hover:-translate-y-1" onclick="handleLoginRedirect(event)">
+            <div class="flex items-center w-full sm:w-auto">
+                <button type="button" class="bg-primary text-white text-base md:text-lg px-6 md:px-8 py-3 md:py-4 rounded-full font-medium hover:bg-primaryDark transition-colors flex items-center justify-center shadow-lg transform hover:-translate-y-1 w-full sm:w-auto" onclick="handleLoginRedirect(event)">
                     Get Your College Admissions
-                    <i class="fas fa-arrow-right ml-3 bg-white text-primary rounded-full p-2 text-sm"></i>
+                    <i class="fas fa-arrow-right ml-2 md:ml-3 bg-white text-primary rounded-full p-2 text-xs md:text-sm"></i>
                 </button>
             </div>
         </div>
 
-        <div class="lg:w-1/2 mt-12 lg:mt-0 relative hero-image-container flex justify-center">
-            <div class="absolute inset-0 bg-bgLight rounded-full filter blur-3xl opacity-50 transform scale-110 -z-10"></div>
+        <div class="lg:w-1/2 mt-16 lg:mt-0 relative hero-image-container w-full max-w-md mx-auto">
+            <div class="absolute inset-0 bg-bgLight rounded-full filter blur-3xl opacity-50 transform scale-110 -z-10 w-64 h-64 md:w-96 md:h-96 mx-auto"></div>
             
-            <!-- Hero3 Path Restored -->
-            <img src="./hero3.png" alt="Get Set Admit Character" class="w-4/5 max-w-md object-contain z-10 relative floating-element drop-shadow-2xl mascot-img" onerror="this.src='https://via.placeholder.com/400x500?text=Hero+Image'" />
+            <img src="./hero3.png" alt="Get Set Admit Character" class="w-full object-contain z-10 relative floating-element drop-shadow-2xl mascot-img max-h-[400px] md:max-h-[500px]" onerror="this.src='https://via.placeholder.com/400x500?text=Hero+Image'" />
             
-            <div class="badge-left floating-element flex items-center z-20">
-                <i class="fas fa-paper-plane text-primary mr-2"></i>
-                <span class="text-sm font-medium text-gray-600">Your Application Goes<br>Straight to the College.</span>
+            <div class="badge-left floating-element flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left z-20 shadow-lg border border-gray-100">
+                <i class="fas fa-paper-plane text-primary mb-1 sm:mb-0 sm:mr-2 mt-1"></i>
+                <span class="font-medium text-gray-600 leading-tight">Your Application Goes<br class="hidden sm:block">Straight to the College.</span>
             </div>
             
-            <div class="badge-right floating-element-delayed flex items-center z-20">
-                <i class="fas fa-graduation-cap text-primary mr-2"></i>
-                <span class="text-sm font-medium text-gray-600">100% Chance<br>of Admission</span>
+            <div class="badge-right floating-element-delayed flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left z-20 shadow-lg border border-gray-100">
+                <i class="fas fa-graduation-cap text-primary mb-1 sm:mb-0 sm:mr-2 mt-1"></i>
+                <span class="font-medium text-gray-600 leading-tight">100% Chance<br class="hidden sm:block">of Admission</span>
             </div>
         </div>
     </section>
 
-    <section class="py-16 px-4 md:px-8 lg:px-16 bg-white border-t border-gray-100">
-        <div class="max-w-6xl mx-auto text-center mb-10">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900">The one-stop platform for college applications and guidance</h2>
+    <section class="py-12 md:py-16 px-4 md:px-8 lg:px-16 bg-white border-t border-gray-100 overflow-hidden">
+        <div class="max-w-6xl mx-auto text-center mb-8 md:mb-10">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 px-2">The one-stop platform for college applications and guidance</h2>
         </div>
         <div class="max-w-6xl mx-auto">
-            <div class="flex justify-center border-b border-gray-200 mb-12 flex-wrap">
-                <button type="button" class="tab-btn active px-6 md:px-12 py-4 text-lg font-semibold text-gray-500 border-b-2 border-transparent" onclick="openTab(event, 'tab-students')">Students</button>
-                <button type="button" class="tab-btn px-6 md:px-12 py-4 text-lg font-semibold text-gray-500 border-b-2 border-transparent hover:text-gray-800" onclick="openTab(event, 'tab-schools')">Schools & Counsellors</button>
-                <button type="button" class="tab-btn px-6 md:px-12 py-4 text-lg font-semibold text-gray-500 border-b-2 border-transparent hover:text-gray-800" onclick="openTab(event, 'tab-unis')">Universities</button>
+            <div class="tabs-container overflow-x-auto flex justify-start md:justify-center border-b border-gray-200 mb-8 md:mb-12 snap-x">
+                <div class="flex min-w-max px-2 md:px-0 mx-auto">
+                    <button type="button" class="tab-btn active px-4 md:px-8 lg:px-12 py-3 md:py-4 text-base md:text-lg font-semibold text-gray-500 border-b-2 border-transparent whitespace-nowrap snap-center" onclick="openTab(event, 'tab-students')">Students</button>
+                    <button type="button" class="tab-btn px-4 md:px-8 lg:px-12 py-3 md:py-4 text-base md:text-lg font-semibold text-gray-500 border-b-2 border-transparent hover:text-gray-800 whitespace-nowrap snap-center" onclick="openTab(event, 'tab-schools')">Schools & Counsellors</button>
+                    <button type="button" class="tab-btn px-4 md:px-8 lg:px-12 py-3 md:py-4 text-base md:text-lg font-semibold text-gray-500 border-b-2 border-transparent hover:text-gray-800 whitespace-nowrap snap-center" onclick="openTab(event, 'tab-unis')">Universities</button>
+                </div>
             </div>
             
-            <div id="tab-students" class="tab-content active flex-col lg:flex-row gap-12 items-center">
-                <div class="lg:w-1/2">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Students Use Get Set Admit To</h3>
-                    <ul class="space-y-4 mb-8 text-gray-600 font-medium">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i> Understand their strengths and interests</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i> Explore career options confidently</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i> Find suitable undergraduate programs</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i> Compare universities and colleges</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i> Discover international education opportunities</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i> Track applications and admission deadlines</li>
+            <div id="tab-students" class="tab-content active flex-col lg:flex-row gap-8 md:gap-12 items-center">
+                <div class="w-full lg:w-1/2">
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6 text-center lg:text-left">Students Use Get Set Admit To</h3>
+                    <ul class="space-y-3 md:space-y-4 mb-6 md:mb-8 text-gray-600 font-medium text-sm md:text-base px-2">
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i> Understand their strengths and interests</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i> Explore career options confidently</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i> Find suitable undergraduate programs</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i> Compare universities and colleges</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i> Discover international education opportunities</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i> Track applications and admission deadlines</li>
                     </ul>
                 </div>
-                <div class="lg:w-1/2 flex justify-center relative">
+                <div class="w-full lg:w-1/2 flex justify-center relative mt-6 lg:mt-0">
                     <div class="bg-blue-100 custom-blob w-[90%] h-full absolute top-0 -z-10 animate-blob opacity-60"></div>
-                    <img src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-4.0.3&w=500&q=80" alt="Students using GSA" class="rounded-[2rem] shadow-xl w-3/4 object-cover z-10 border-8 border-white hover:scale-105 transition-transform duration-500" />
+                    <img src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-4.0.3&w=500&q=80" alt="Students using GSA" class="rounded-[1.5rem] md:rounded-[2rem] shadow-xl w-[85%] md:w-3/4 object-cover z-10 border-4 md:border-8 border-white hover:scale-105 transition-transform duration-500" />
                 </div>
             </div>
 
-            <div id="tab-schools" class="tab-content hidden flex-col lg:flex-row gap-12 items-center">
-                <div class="lg:w-1/2">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Schools & Counsellors Use Get Set Admit To</h3>
-                    <ul class="space-y-4 mb-8 text-gray-600 font-medium">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i> Conduct career assessments for students</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i> Access detailed career reports</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i> Support stream and course selection</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i> Improve student counselling outcomes</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i> Connect students with universities</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i> Simplify higher education planning</li>
+            <div id="tab-schools" class="tab-content hidden flex-col lg:flex-row gap-8 md:gap-12 items-center">
+                <div class="w-full lg:w-1/2">
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6 text-center lg:text-left">Schools & Counsellors Use Get Set Admit To</h3>
+                    <ul class="space-y-3 md:space-y-4 mb-6 md:mb-8 text-gray-600 font-medium text-sm md:text-base px-2">
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i> Conduct career assessments for students</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i> Access detailed career reports</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i> Support stream and course selection</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i> Improve student counselling outcomes</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i> Connect students with universities</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i> Simplify higher education planning</li>
                     </ul>
                 </div>
-                <div class="lg:w-1/2 flex justify-center relative">
+                <div class="w-full lg:w-1/2 flex justify-center relative mt-6 lg:mt-0">
                     <div class="bg-green-100 custom-blob w-[90%] h-full absolute top-0 -z-10 animate-blob opacity-60" style="animation-delay: 2s;"></div>
-                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&w=500&q=80" alt="Schools using GSA" class="rounded-[2rem] shadow-xl w-3/4 object-cover z-10 border-8 border-white hover:scale-105 transition-transform duration-500" />
+                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&w=500&q=80" alt="Schools using GSA" class="rounded-[1.5rem] md:rounded-[2rem] shadow-xl w-[85%] md:w-3/4 object-cover z-10 border-4 md:border-8 border-white hover:scale-105 transition-transform duration-500" />
                 </div>
             </div>
 
-            <div id="tab-unis" class="tab-content hidden flex-col lg:flex-row gap-12 items-center">
-                <div class="lg:w-1/2">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Universities Use Get Set Admit To</h3>
-                    <ul class="space-y-4 mb-8 text-gray-600 font-medium">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i> Connect with career-ready students</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i> Showcase undergraduate programs</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i> Engage prospective applicants</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i> Increase qualified applications</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i> Promote international education opportunities</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i> Strengthen student outreach efforts</li>
+            <div id="tab-unis" class="tab-content hidden flex-col lg:flex-row gap-8 md:gap-12 items-center">
+                <div class="w-full lg:w-1/2">
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6 text-center lg:text-left">Universities Use Get Set Admit To</h3>
+                    <ul class="space-y-3 md:space-y-4 mb-6 md:mb-8 text-gray-600 font-medium text-sm md:text-base px-2">
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i> Connect with career-ready students</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i> Showcase undergraduate programs</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i> Engage prospective applicants</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i> Increase qualified applications</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i> Promote international education opportunities</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-lg"></i> Strengthen student outreach efforts</li>
                     </ul>
                 </div>
-                <div class="lg:w-1/2 flex justify-center relative">
+                <div class="w-full lg:w-1/2 flex justify-center relative mt-6 lg:mt-0">
                     <div class="bg-purple-100 custom-blob w-[90%] h-full absolute top-0 -z-10 animate-blob opacity-60" style="animation-delay: 4s;"></div>
-                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&w=500&q=80" alt="Universities on GSA" class="rounded-[2rem] shadow-xl w-3/4 object-cover z-10 border-8 border-white hover:scale-105 transition-transform duration-500" />
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&w=500&q=80" alt="Universities on GSA" class="rounded-[1.5rem] md:rounded-[2rem] shadow-xl w-[85%] md:w-3/4 object-cover z-10 border-4 md:border-8 border-white hover:scale-105 transition-transform duration-500" />
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-20 px-4 md:px-8 lg:px-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-            <div class="lg:w-1/2 relative flex justify-center">
-                <div class="bg-blue-100 custom-blob w-96 h-96 absolute top-10 -z-10 opacity-70"></div>
-                <!-- Hero Path Restored -->
-                <img src="./hero.png" alt="About Us Hero" class="relative z-10 w-3/4 mascot-img" onerror="this.src='https://via.placeholder.com/400x500?text=About+Mascot'" />
+    <section id="about" class="py-12 md:py-20 px-4 md:px-8 lg:px-16 bg-gray-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10 md:gap-16">
+            <div class="w-full lg:w-1/2 relative flex justify-center order-2 lg:order-1 mt-8 lg:mt-0">
+                <div class="bg-blue-100 custom-blob w-64 h-64 md:w-96 md:h-96 absolute top-0 md:top-10 -z-10 opacity-70"></div>
+                <img src="./hero.png" alt="About Us Hero" class="relative z-10 w-2/3 md:w-3/4 mascot-img" onerror="this.src='https://via.placeholder.com/400x500?text=About+Mascot'" />
             </div>
-            <div class="lg:w-1/2">
-                <h4 class="text-primary font-bold mb-3 uppercase tracking-widest text-sm">ABOUT US</h4>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">Guiding Students Towards Smarter Career Decisions</h2>
-                <div class="text-gray-600 mb-8 leading-relaxed space-y-4">
+            <div class="w-full lg:w-1/2 order-1 lg:order-2 text-center lg:text-left">
+                <h4 class="text-primary font-bold mb-2 md:mb-3 uppercase tracking-widest text-xs md:text-sm">ABOUT US</h4>
+                <h2 class="text-2xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 md:mb-6 leading-tight">Guiding Students Towards Smarter Career Decisions</h2>
+                <div class="text-gray-600 mb-6 md:mb-8 leading-relaxed space-y-3 md:space-y-4 text-sm md:text-base text-left">
                     <p>Get Set Admit is an AI-powered career guidance and university discovery platform designed for students in Classes 9, 10, 11, and 12.</p>
                     <p>We help students understand their interests, strengths, and future opportunities before they choose a course or university. Through intelligent assessments, expert guidance, and access to trusted institutions, students can confidently plan their higher education journey.</p>
                     <p>Whether you're exploring undergraduate programs in India or planning to study abroad, Get Set Admit simplifies the process and helps you make informed decisions.</p>
                 </div>
                 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
-                    <div class="flex items-center bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition-shadow cursor-pointer border border-gray-100" onclick="openFeatureModal('GSA Counselling', 'Find solace and support through our counseling sessions, where experienced professionals guide you toward a brighter path.')">
-                        <div class="bg-primary text-white w-12 h-12 rounded-xl flex items-center justify-center shrink-0 mr-4 shadow-md"><i class="fas fa-comment-dots text-xl"></i></div>
-                        <h3 class="font-bold text-gray-900">GSA Counselling</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-10 text-left">
+                    <div class="flex items-center bg-white p-3 md:p-4 rounded-xl md:rounded-2xl shadow-sm hover:shadow-md transition-shadow cursor-pointer border border-gray-100" onclick="openFeatureModal('GSA Counselling', 'Find solace and support through our counseling sessions, where experienced professionals guide you toward a brighter path.')">
+                        <div class="bg-primary text-white w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center shrink-0 mr-3 md:mr-4 shadow-md"><i class="fas fa-comment-dots text-lg md:text-xl"></i></div>
+                        <h3 class="font-bold text-gray-900 text-sm md:text-base">GSA Counselling</h3>
                     </div>
-                    <div class="flex items-center bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition-shadow cursor-pointer border border-gray-100" onclick="openFeatureModal('AI Chat and Call', 'Access round-the-clock intelligent automated support and AI-driven counseling for prompt assistance, whenever you need it.')">
-                        <div class="bg-blue-100 text-primary w-12 h-12 rounded-xl flex items-center justify-center shrink-0 mr-4 shadow-md"><i class="fas fa-robot text-xl"></i></div>
-                        <h3 class="font-bold text-gray-900">AI Chat and Call</h3>
+                    <div class="flex items-center bg-white p-3 md:p-4 rounded-xl md:rounded-2xl shadow-sm hover:shadow-md transition-shadow cursor-pointer border border-gray-100" onclick="openFeatureModal('AI Chat and Call', 'Access round-the-clock intelligent automated support and AI-driven counseling for prompt assistance, whenever you need it.')">
+                        <div class="bg-blue-100 text-primary w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center shrink-0 mr-3 md:mr-4 shadow-md"><i class="fas fa-robot text-lg md:text-xl"></i></div>
+                        <h3 class="font-bold text-gray-900 text-sm md:text-base">AI Chat and Call</h3>
                     </div>
-                    <div class="flex items-center bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition-shadow cursor-pointer border border-gray-100" onclick="openFeatureModal('AI Career Compass', 'Our advanced Psychometric Test designed to decode your unique personality, strengths, and interests to align you with the perfect career path.')">
-                        <div class="bg-purple-100 text-purple-600 w-12 h-12 rounded-xl flex items-center justify-center shrink-0 mr-4 shadow-md"><i class="fas fa-brain text-xl"></i></div>
-                        <h3 class="font-bold text-gray-900">AI Career Compass</h3>
+                    <div class="flex items-center bg-white p-3 md:p-4 rounded-xl md:rounded-2xl shadow-sm hover:shadow-md transition-shadow cursor-pointer border border-gray-100" onclick="openFeatureModal('AI Career Compass', 'Our advanced Psychometric Test designed to decode your unique personality, strengths, and interests to align you with the perfect career path.')">
+                        <div class="bg-purple-100 text-purple-600 w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center shrink-0 mr-3 md:mr-4 shadow-md"><i class="fas fa-brain text-lg md:text-xl"></i></div>
+                        <h3 class="font-bold text-gray-900 text-sm md:text-base">AI Career Compass</h3>
                     </div>
-                    <div class="flex items-center bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition-shadow cursor-pointer border border-gray-100" onclick="openFeatureModal('One Apply', 'A streamlined, unified application process allowing you to apply to over 300+ colleges globally in under 10 minutes.')">
-                        <div class="bg-green-100 text-green-600 w-12 h-12 rounded-xl flex items-center justify-center shrink-0 mr-4 shadow-md"><i class="fas fa-bolt text-xl"></i></div>
-                        <h3 class="font-bold text-gray-900">One Apply</h3>
+                    <div class="flex items-center bg-white p-3 md:p-4 rounded-xl md:rounded-2xl shadow-sm hover:shadow-md transition-shadow cursor-pointer border border-gray-100" onclick="openFeatureModal('One Apply', 'A streamlined, unified application process allowing you to apply to over 300+ colleges globally in under 10 minutes.')">
+                        <div class="bg-green-100 text-green-600 w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl flex items-center justify-center shrink-0 mr-3 md:mr-4 shadow-md"><i class="fas fa-bolt text-lg md:text-xl"></i></div>
+                        <h3 class="font-bold text-gray-900 text-sm md:text-base">One Apply</h3>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div id="featureModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black bg-opacity-60 transition-opacity backdrop-blur-sm">
-        <div class="bg-white rounded-[2rem] p-8 md:p-10 max-w-md w-[90%] relative transform scale-95 transition-transform duration-300 shadow-2xl">
-            <button type="button" onclick="closeFeatureModal()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-800 bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center transition-colors">
+    <div id="featureModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black bg-opacity-60 transition-opacity backdrop-blur-sm p-4">
+        <div class="bg-white rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-10 max-w-md w-full relative transform scale-95 transition-transform duration-300 shadow-2xl mx-auto">
+            <button type="button" onclick="closeFeatureModal()" class="absolute top-4 right-4 md:top-5 md:right-5 text-gray-400 hover:text-gray-800 bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center transition-colors">
                 <i class="fas fa-times"></i>
             </button>
-            <div class="flex justify-center mb-6">
-                <!-- Hero2 Path Restored -->
-                <img src="./hero2.png" alt="Mascot" class="h-32 object-contain drop-shadow-lg mascot-img" onerror="this.src='https://via.placeholder.com/150?text=Mascot'">
+            <div class="flex justify-center mb-4 md:mb-6">
+                <img src="./hero2.png" alt="Mascot" class="h-24 md:h-32 object-contain drop-shadow-lg mascot-img" onerror="this.src='https://via.placeholder.com/150?text=Mascot'">
             </div>
-            <h3 id="modalTitle" class="text-2xl font-bold text-gray-900 mb-3 text-center"></h3>
-            <p id="modalDesc" class="text-gray-600 text-center leading-relaxed"></p>
+            <h3 id="modalTitle" class="text-xl md:text-2xl font-bold text-gray-900 mb-2 md:mb-3 text-center"></h3>
+            <p id="modalDesc" class="text-sm md:text-base text-gray-600 text-center leading-relaxed"></p>
         </div>
     </div>
 
-    <section id="one-apply" class="py-16 px-4 md:px-8 lg:px-16 bg-gray-50 border-t border-gray-100">
-        <h2 class="text-3xl md:text-4xl font-bold text-center text-primary mb-12">
+    <section id="one-apply" class="py-12 md:py-16 px-4 md:px-8 lg:px-16 bg-gray-50 border-t border-gray-100">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-primary mb-8 md:mb-12">
             Choose Where You Are Right Now
         </h2>
         
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-            <div class="info-card bg-primary text-white p-8 lg:col-span-3 lg:flex justify-between items-center rounded-[2rem] shadow-lg">
-                <div class="lg:w-1/2 mb-8 lg:mb-0">
-                    <h3 class="text-3xl font-bold mb-4">I'm in Class 9/10/11/12, figuring out what to study.</h3>
-                    <ul class="space-y-3 mb-8 text-blue-100">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-white mr-3"></i> Answer 3 Sets of Questions</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-white mr-3"></i> Get a Personalized Course Report</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-white mr-3"></i> Built on 850+ Courses and Real Industry Data</li>
+            <div class="info-card bg-primary text-white p-6 md:p-8 lg:col-span-3 flex flex-col lg:flex-row justify-between items-center rounded-[1.5rem] md:rounded-[2rem] shadow-lg">
+                <div class="w-full lg:w-1/2 mb-6 lg:mb-0 text-center lg:text-left">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4">I'm in Class 9/10/11/12, figuring out what to study.</h3>
+                    <ul class="space-y-2 md:space-y-3 mb-6 md:mb-8 text-blue-100 text-sm md:text-base inline-block text-left">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-white mr-3 shrink-0"></i> <span>Answer 3 Sets of Questions</span></li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-white mr-3 shrink-0"></i> <span>Get a Personalized Course Report</span></li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-white mr-3 shrink-0"></i> <span>Built on 850+ Courses and Real Industry Data</span></li>
                     </ul>
-                    <button type="button" class="bg-white hover:bg-gray-100 text-primary px-8 py-3 rounded-full font-medium transition w-full sm:w-auto shadow-md transform hover:scale-105" onclick="handleLoginRedirect(event)">
-                        Start with AI Career Compass
-                    </button>
+                    <div class="w-full flex justify-center lg:justify-start">
+                        <button type="button" class="bg-white text-primary px-6 md:px-8 py-3 rounded-full font-medium transition w-full sm:w-auto shadow-md transform hover:scale-105" onclick="handleLoginRedirect(event)">
+                            Start with AI Career Compass
+                        </button>
+                    </div>
                 </div>
-                <div class="lg:w-5/12 flex justify-end">
-                    <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Students" class="rounded-2xl object-cover h-64 w-full shadow-lg border-4 border-white border-opacity-20">
+                <div class="w-full lg:w-5/12 flex justify-center lg:justify-end">
+                    <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Students" class="rounded-xl md:rounded-2xl object-cover h-48 md:h-64 w-full shadow-lg border-2 md:border-4 border-white border-opacity-20">
                 </div>
             </div>
 
-            <div class="info-card bg-bgLight p-8 rounded-[2rem] flex flex-col justify-between shadow-md hover:shadow-xl">
-                <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">I completed Class 12,<br>I'm ready to apply.</h3>
+            <div class="info-card bg-bgLight p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] flex flex-col justify-between shadow-md hover:shadow-xl">
+                <div class="text-center md:text-left">
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">I completed Class 12,<br class="hidden md:block">I'm ready to apply.</h3>
                 </div>
-                <div class="mt-8 relative h-48 w-full rounded-xl overflow-hidden mb-6 shadow-md">
+                <div class="mt-4 md:mt-8 relative h-40 md:h-48 w-full rounded-xl overflow-hidden mb-4 md:mb-6 shadow-md">
                     <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="College Student" class="absolute inset-0 w-full h-full object-cover hover:scale-110 transition-transform duration-500">
                 </div>
-                <button type="button" class="bg-white text-primary border border-primary hover:bg-primary hover:text-white px-8 py-3 rounded-full font-medium transition w-full shadow-sm" onclick="handleLoginRedirect(event)">
+                <button type="button" class="bg-white text-primary border border-primary px-6 md:px-8 py-3 rounded-full font-medium transition w-full shadow-sm" onclick="handleLoginRedirect(event)">
                     Explore 300+ Colleges
                 </button>
             </div>
 
-            <div id="education-loan" class="info-card bg-darkSection text-white p-8 rounded-[2rem] flex flex-col justify-between lg:col-span-2 shadow-md hover:shadow-xl">
-                <div>
-                    <h3 class="text-3xl font-bold mb-4">Need financial support<br>for your studies?</h3>
-                    <p class="text-gray-400 mb-4 text-lg">Explore our comprehensive Education Loan options to fund your dream university with minimal hassle.</p>
+            <div id="education-loan" class="info-card bg-darkSection text-white p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] flex flex-col justify-between lg:col-span-2 shadow-md hover:shadow-xl">
+                <div class="text-center lg:text-left">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Need financial support<br class="hidden sm:block">for your studies?</h3>
+                    <p class="text-gray-400 mb-4 text-sm md:text-lg">Explore our comprehensive Education Loan options to fund your dream university with minimal hassle.</p>
                 </div>
-                <div class="mt-4 relative h-48 w-full rounded-xl overflow-hidden mb-6 shadow-md">
+                <div class="mt-2 md:mt-4 relative h-40 md:h-48 w-full rounded-xl overflow-hidden mb-4 md:mb-6 shadow-md">
                      <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Education Loan" class="absolute inset-0 w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-500 hover:scale-105 transform">
                 </div>
-                <button type="button" class="bg-white text-darkSection hover:bg-gray-100 px-8 py-3 rounded-full font-medium transition w-full sm:w-1/2 shadow-sm" onclick="handleLoginRedirect(event)">
-                    Explore Education Loans
-                </button>
+                <div class="w-full flex justify-center lg:justify-start">
+                    <button type="button" class="bg-white text-darkSection px-6 md:px-8 py-3 rounded-full font-medium transition w-full sm:w-1/2 shadow-sm" onclick="handleLoginRedirect(event)">
+                        Explore Education Loans
+                    </button>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="py-16 px-4 md:px-8 lg:px-16 bg-white">
-        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 items-center">
-            <div class="lg:w-1/2 w-full">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-12">How GetSetAdmit Works</h2>
-                <div class="space-y-4">
-                    <div class="border-b border-gray-200 pb-4">
+    <section class="py-12 md:py-16 px-4 md:px-8 lg:px-16 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 md:gap-12 items-center">
+            <div class="w-full lg:w-1/2 order-2 lg:order-1">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-6 md:mb-12 text-center lg:text-left">How GetSetAdmit Works</h2>
+                <div class="space-y-3 md:space-y-4">
+                    <div class="border-b border-gray-200 pb-3 md:pb-4">
                         <div class="flex justify-between items-center cursor-pointer group">
-                            <h3 class="text-xl font-bold text-primary group-hover:text-primaryDark transition-colors">Build Your Profile</h3>
+                            <h3 class="text-lg md:text-xl font-bold text-primary transition-colors">Build Your Profile</h3>
                             <i class="fas fa-minus text-gray-400"></i>
                         </div>
-                        <p class="text-gray-500 mt-2 text-sm leading-relaxed">Enter your marks, course preference and budget. Done in minutes.</p>
+                        <p class="text-gray-500 mt-2 text-xs md:text-sm leading-relaxed">Enter your marks, course preference and budget. Done in minutes.</p>
                     </div>
-                    <div class="border-b border-gray-200 py-4">
+                    <div class="border-b border-gray-200 py-3 md:py-4">
                         <div class="flex justify-between items-center cursor-pointer group">
-                            <h3 class="text-lg font-bold text-gray-800 group-hover:text-primary transition-colors">Step 2 <br> <span class="text-xl">Get Matched To The Right College</span></h3>
+                            <h3 class="text-base md:text-lg font-bold text-gray-800 transition-colors">Step 2 <br class="hidden sm:block"> <span class="text-lg md:text-xl">Get Matched To The Right College</span></h3>
                             <i class="fas fa-plus text-gray-400"></i>
                         </div>
                     </div>
-                    <div class="py-4">
+                    <div class="py-3 md:py-4">
                         <div class="flex justify-between items-center cursor-pointer group">
-                            <h3 class="text-lg font-bold text-gray-800 group-hover:text-primary transition-colors">Step 3 <br> <span class="text-xl">Shortlist & Apply Directly</span></h3>
+                            <h3 class="text-base md:text-lg font-bold text-gray-800 transition-colors">Step 3 <br class="hidden sm:block"> <span class="text-lg md:text-xl">Shortlist & Apply Directly</span></h3>
                             <i class="fas fa-plus text-gray-400"></i>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="lg:w-1/2 w-full flex justify-center">
-                <div class="relative w-full flex items-center justify-center overflow-hidden">
-                    <div class="absolute inset-0 "></div>
-                    <div class="flex items-center justify-center transform transition-transform duration-500 hover:scale-105 mascot-img">
-                         <!-- Hero2 Path Restored -->
-                         <img src="./hero2.png" alt="How it Works Character" class="h-61 floating-element" onerror="this.src='https://via.placeholder.com/200?text=Hero2'" />
+            <div class="w-full lg:w-1/2 flex justify-center order-1 lg:order-2 mb-8 lg:mb-0">
+                <div class="relative w-full max-w-[280px] sm:max-w-sm md:max-w-md h-64 md:h-80 bg-white rounded-[2rem] shadow-xl flex items-center justify-center overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary to-blue-300 transform -skew-y-6 scale-110 opacity-10"></div>
+                    <div class="flex items-center justify-center transform transition-transform duration-500 hover:scale-105 mascot-img z-10 w-full h-full p-4">
+                         <img src="./hero2.png" alt="How it Works Character" class="max-h-full max-w-full object-contain floating-element" onerror="this.src='https://via.placeholder.com/200?text=Hero2'" />
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 px-4 md:px-8 lg:px-16 bg-gray-50 overflow-hidden">
+    <section class="py-16 md:py-20 px-4 md:px-8 lg:px-16 bg-gray-50 overflow-hidden">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h4 class="text-primary font-bold uppercase tracking-widest text-sm mb-3">SCHOOL FEEDBACKS</h4>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6">Trusted by Leading Schools & Counsellors</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto text-lg">See how schools and counselling partners use Get Set Admit to guide students toward the right academic opportunities.</p>
+            <div class="text-center mb-10 md:mb-16">
+                <h4 class="text-primary font-bold uppercase tracking-widest text-xs md:text-sm mb-2 md:mb-3">SCHOOL FEEDBACKS</h4>
+                <h2 class="text-2xl md:text-3xl lg:text-5xl font-extrabold text-gray-900 mb-4 md:mb-6 px-2">Trusted by Leading Schools & Counsellors</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-sm md:text-lg px-4">See how schools and counselling partners use Get Set Admit to guide students toward the right academic opportunities.</p>
             </div>
             
-            <div class="testimonial-slider pb-12">
+            <div class="testimonial-slider pb-8 md:pb-12">
                 
-                <div class="outline-none px-4">
-                    <div class="flex flex-col md:flex-row gap-8 items-center bg-white p-8 md:p-12 rounded-[3rem] shadow-xl">
-                        <div class="md:w-1/3 flex justify-center">
-                            <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-md bg-white flex items-center justify-center">
-                                <!-- Testimonial Images Added Here -->
+                <div class="outline-none px-2 md:px-4">
+                    <div class="flex flex-col md:flex-row gap-6 md:gap-8 items-center bg-white p-6 md:p-8 lg:p-12 rounded-[2rem] md:rounded-[3rem] shadow-xl mx-2 md:mx-0">
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-md bg-white flex items-center justify-center shrink-0">
                                 <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Greenwood School" class="w-full h-full object-cover" />
                             </div>
                         </div>
-                        <div class="md:w-2/3">
-                            <div class="text-yellow-400 mb-4 flex gap-1 text-lg">
+                        <div class="w-full md:w-2/3 text-center md:text-left">
+                            <div class="text-yellow-400 mb-3 md:mb-4 flex justify-center md:justify-start gap-1 text-base md:text-lg">
                                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             </div>
-                            <p class="text-gray-700 mb-6 italic leading-relaxed text-lg">"Get Set Admit has transformed the way our students explore universities and career opportunities. The AI-powered guidance and university discovery tools have made the admission journey much simpler and more efficient."</p>
-                            <h4 class="font-bold text-gray-900 text-xl">Greenwood International School</h4>
+                            <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed text-sm md:text-lg">"Get Set Admit has transformed the way our students explore universities and career opportunities. The AI-powered guidance and university discovery tools have made the admission journey much simpler and more efficient."</p>
+                            <h4 class="font-bold text-gray-900 text-lg md:text-xl">Greenwood International School</h4>
                         </div>
                     </div>
                 </div>
 
-                <div class="outline-none px-4">
-                    <div class="flex flex-col md:flex-row gap-8 items-center bg-white p-8 md:p-12 rounded-[3rem] shadow-xl">
-                        <div class="md:w-1/3 flex justify-center">
-                            <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-md bg-white flex items-center justify-center">
+                <div class="outline-none px-2 md:px-4">
+                    <div class="flex flex-col md:flex-row gap-6 md:gap-8 items-center bg-white p-6 md:p-8 lg:p-12 rounded-[2rem] md:rounded-[3rem] shadow-xl mx-2 md:mx-0">
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-md bg-white flex items-center justify-center shrink-0">
                                 <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="DPS" class="w-full h-full object-cover" />
                             </div>
                         </div>
-                        <div class="md:w-2/3">
-                            <div class="text-yellow-400 mb-4 flex gap-1 text-lg">
+                        <div class="w-full md:w-2/3 text-center md:text-left">
+                            <div class="text-yellow-400 mb-3 md:mb-4 flex justify-center md:justify-start gap-1 text-base md:text-lg">
                                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             </div>
-                            <p class="text-gray-700 mb-6 italic leading-relaxed text-lg">"The platform provides students with accurate information, personalized recommendations, and direct access to universities. It has become a valuable resource for our counselling team."</p>
-                            <h4 class="font-bold text-gray-900 text-xl">Delhi Public School</h4>
+                            <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed text-sm md:text-lg">"The platform provides students with accurate information, personalized recommendations, and direct access to universities. It has become a valuable resource for our counselling team."</p>
+                            <h4 class="font-bold text-gray-900 text-lg md:text-xl">Delhi Public School</h4>
                         </div>
                     </div>
                 </div>
 
-                <div class="outline-none px-4">
-                    <div class="flex flex-col md:flex-row gap-8 items-center bg-white p-8 md:p-12 rounded-[3rem] shadow-xl">
-                        <div class="md:w-1/3 flex justify-center">
-                            <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-md bg-white flex items-center justify-center">
+                <div class="outline-none px-2 md:px-4">
+                    <div class="flex flex-col md:flex-row gap-6 md:gap-8 items-center bg-white p-6 md:p-8 lg:p-12 rounded-[2rem] md:rounded-[3rem] shadow-xl mx-2 md:mx-0">
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-md bg-white flex items-center justify-center shrink-0">
                                 <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Ryan School" class="w-full h-full object-cover" />
                             </div>
                         </div>
-                        <div class="md:w-2/3">
-                            <div class="text-yellow-400 mb-4 flex gap-1 text-lg">
+                        <div class="w-full md:w-2/3 text-center md:text-left">
+                            <div class="text-yellow-400 mb-3 md:mb-4 flex justify-center md:justify-start gap-1 text-base md:text-lg">
                                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             </div>
-                            <p class="text-gray-700 mb-6 italic leading-relaxed text-lg">"Get Set Admit helps students make informed decisions about their higher education journey. The AI Counsellor and One Apply features significantly improve the application experience."</p>
-                            <h4 class="font-bold text-gray-900 text-xl">Ryan International School</h4>
+                            <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed text-sm md:text-lg">"Get Set Admit helps students make informed decisions about their higher education journey. The AI Counsellor and One Apply features significantly improve the application experience."</p>
+                            <h4 class="font-bold text-gray-900 text-lg md:text-xl">Ryan International School</h4>
                         </div>
                     </div>
                 </div>
 
-                <div class="outline-none px-4">
-                    <div class="flex flex-col md:flex-row gap-8 items-center bg-white p-8 md:p-12 rounded-[3rem] shadow-xl">
-                        <div class="md:w-1/3 flex justify-center">
-                            <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-md bg-white flex items-center justify-center">
+                <div class="outline-none px-2 md:px-4">
+                    <div class="flex flex-col md:flex-row gap-6 md:gap-8 items-center bg-white p-6 md:p-8 lg:p-12 rounded-[2rem] md:rounded-[3rem] shadow-xl mx-2 md:mx-0">
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-md bg-white flex items-center justify-center shrink-0">
                                 <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Podar School" class="w-full h-full object-cover" />
                             </div>
                         </div>
-                        <div class="md:w-2/3">
-                            <div class="text-yellow-400 mb-4 flex gap-1 text-lg">
+                        <div class="w-full md:w-2/3 text-center md:text-left">
+                            <div class="text-yellow-400 mb-3 md:mb-4 flex justify-center md:justify-start gap-1 text-base md:text-lg">
                                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             </div>
-                            <p class="text-gray-700 mb-6 italic leading-relaxed text-lg">"The platform bridges the gap between students and universities by providing transparent information and smart admission support. We highly recommend it for career guidance initiatives."</p>
-                            <h4 class="font-bold text-gray-900 text-xl">Podar International School</h4>
+                            <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed text-sm md:text-lg">"The platform bridges the gap between students and universities by providing transparent information and smart admission support. We highly recommend it for career guidance initiatives."</p>
+                            <h4 class="font-bold text-gray-900 text-lg md:text-xl">Podar International School</h4>
                         </div>
                     </div>
                 </div>
 
-                <div class="outline-none px-4">
-                    <div class="flex flex-col md:flex-row gap-8 items-center bg-white p-8 md:p-12 rounded-[3rem] shadow-xl">
-                        <div class="md:w-1/3 flex justify-center">
-                            <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-md bg-white flex items-center justify-center">
+                <div class="outline-none px-2 md:px-4">
+                    <div class="flex flex-col md:flex-row gap-6 md:gap-8 items-center bg-white p-6 md:p-8 lg:p-12 rounded-[2rem] md:rounded-[3rem] shadow-xl mx-2 md:mx-0">
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-md bg-white flex items-center justify-center shrink-0">
                                 <img src="https://images.unsplash.com/photo-1564069114553-7215e1ff1890?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="The Heritage School" class="w-full h-full object-cover" />
                             </div>
                         </div>
-                        <div class="md:w-2/3">
-                            <div class="text-yellow-400 mb-4 flex gap-1 text-lg">
+                        <div class="w-full md:w-2/3 text-center md:text-left">
+                            <div class="text-yellow-400 mb-3 md:mb-4 flex justify-center md:justify-start gap-1 text-base md:text-lg">
                                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             </div>
-                            <p class="text-gray-700 mb-6 italic leading-relaxed text-lg">"An excellent platform for students exploring higher education opportunities in India and abroad. The user experience and AI guidance tools are outstanding."</p>
-                            <h4 class="font-bold text-gray-900 text-xl">The Heritage School</h4>
+                            <p class="text-gray-700 mb-4 md:mb-6 italic leading-relaxed text-sm md:text-lg">"An excellent platform for students exploring higher education opportunities in India and abroad. The user experience and AI guidance tools are outstanding."</p>
+                            <h4 class="font-bold text-gray-900 text-lg md:text-xl">The Heritage School</h4>
                         </div>
                     </div>
                 </div>
@@ -484,19 +521,19 @@
         </div>
     </section>
 
-    <section class="py-12 bg-white text-center border-t border-gray-100">
-        <h2 class="text-3xl font-bold text-primary mb-4">Choice is power, GetSetAdmit makes it possible.</h2>
-        <p class="text-gray-600 mb-8">Helping India discover and apply to the right college<br>with verified, transparent and bias-free data.</p>
+    <section class="py-10 md:py-12 bg-white text-center border-t border-gray-100 px-4">
+        <h2 class="text-2xl md:text-3xl font-bold text-primary mb-3 md:mb-4">Choice is power, GetSetAdmit makes it possible.</h2>
+        <p class="text-gray-600 mb-6 md:mb-8 text-sm md:text-base">Helping India discover and apply to the right college<br class="hidden sm:block">with verified, transparent and bias-free data.</p>
         
-        <div class="flex justify-center gap-4">
-            <button type="button" class="bg-darkSection text-white px-6 py-3 rounded-xl flex items-center hover:bg-gray-800 transition transform hover:scale-105 shadow-md" onclick="handleLoginRedirect(event)">
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <button type="button" class="w-full sm:w-auto bg-darkSection text-white px-6 py-3 rounded-xl flex items-center justify-center hover:bg-gray-800 transition transform hover:scale-105 shadow-md" onclick="handleLoginRedirect(event)">
                 <i class="fab fa-apple text-2xl mr-3"></i>
                 <div class="text-left">
                     <p class="text-[10px] leading-tight opacity-80">Download for</p>
                     <p class="font-bold leading-tight">iPhone</p>
                 </div>
             </button>
-            <button type="button" class="bg-white text-darkSection border border-gray-300 px-6 py-3 rounded-xl flex items-center hover:bg-gray-50 transition shadow-md transform hover:scale-105" onclick="handleLoginRedirect(event)">
+            <button type="button" class="w-full sm:w-auto bg-white text-darkSection border border-gray-300 px-6 py-3 rounded-xl flex items-center justify-center hover:bg-gray-50 transition shadow-md transform hover:scale-105" onclick="handleLoginRedirect(event)">
                 <i class="fab fa-google-play text-2xl mr-3"></i>
                 <div class="text-left">
                     <p class="text-[10px] leading-tight text-gray-500">Download on</p>
@@ -506,19 +543,18 @@
         </div>
     </section>
 
-    <div class="fixed bottom-6 right-6 z-50">
-        <a href="#" class="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-3xl shadow-lg hover:bg-green-600 transition-colors hover:scale-110 transform duration-200">
+    <div class="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50">
+        <a href="#" class="w-12 h-12 md:w-14 md:h-14 bg-green-500 rounded-full flex items-center justify-center text-white text-2xl md:text-3xl shadow-lg hover:bg-green-600 transition-colors hover:scale-110 transform duration-200">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
 
-    <footer id="footer" class="bg-darkSection text-white py-12 px-4 md:px-8 lg:px-16 mt-8 border-t-4 border-primary">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="col-span-1 md:col-span-2">
+    <footer id="footer" class="bg-darkSection text-white py-10 md:py-12 px-6 md:px-8 lg:px-16 mt-8 border-t-4 border-primary">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-8">
+            <div class="col-span-1 sm:col-span-2 md:col-span-2 flex flex-col items-center sm:items-start text-center sm:text-left">
                 <div class="flex items-center mb-4 cursor-pointer" onclick="handleLoginRedirect(event)">
-                    <!-- Footer Logo Updated -->
-                    <img src="./assets/logo.png" alt="Get Set Admit" class="w-8 md:w-12 lg:w-20 mr-2" onerror="this.src='https://via.placeholder.com/64?text=Logo'" />
-                    <h2 class="text-2xl font-bold italic">
+                    <img src="./assets/logo.png" alt="Get Set Admit" class="w-8 md:w-12 lg:w-16 mr-2" onerror="this.src='https://via.placeholder.com/64?text=Logo'" />
+                    <h2 class="text-xl md:text-2xl font-bold italic">
                         GetSet<span class="text-primary">Admit</span>
                     </h2>
                 </div>
@@ -533,8 +569,8 @@
                 </div>
             </div>
             
-            <div>
-                <h3 class="text-lg font-bold mb-4 text-gray-100">Explore</h3>
+            <div class="text-center sm:text-left">
+                <h3 class="text-base md:text-lg font-bold mb-4 text-gray-100">Explore</h3>
                 <ul class="space-y-2 text-gray-400 text-sm">
                     <li><a href="#home" class="hover:text-white hover:pl-1 transition-all">Home</a></li>
                     <li><a href="#about" class="hover:text-white hover:pl-1 transition-all">About Us</a></li>
@@ -542,8 +578,8 @@
                 </ul>
             </div>
             
-            <div>
-                <h3 class="text-lg font-bold mb-4 text-gray-100">Support</h3>
+            <div class="text-center sm:text-left">
+                <h3 class="text-base md:text-lg font-bold mb-4 text-gray-100">Support</h3>
                 <ul class="space-y-2 text-gray-400 text-sm">
                     <li><a href="#footer" class="hover:text-white hover:pl-1 transition-all">Contact Us</a></li>
                     <li><a href="./privacyPolicy.html" class="hover:text-white hover:pl-1 transition-all">Privacy Policy</a></li>
@@ -552,7 +588,7 @@
             </div>
         </div>
         
-        <div class="max-w-7xl mx-auto border-t border-gray-800 mt-10 pt-8 text-center text-gray-500 text-sm">
+        <div class="max-w-7xl mx-auto border-t border-gray-800 mt-8 pt-6 md:mt-10 md:pt-8 text-center text-gray-500 text-xs md:text-sm px-4">
             © 2026 GetSetAdmit. All rights reserved.
         </div>
     </footer>
@@ -574,6 +610,7 @@
             document.getElementById('modalDesc').innerText = desc;
             const modal = document.getElementById('featureModal');
             modal.classList.remove('hidden');
+            modal.classList.add('flex');
             // Timeout to allow display block to apply before animating opacity
             setTimeout(() => {
                 modal.firstElementChild.classList.remove('scale-95');
@@ -587,6 +624,7 @@
             modal.firstElementChild.classList.add('scale-95');
             setTimeout(() => {
                 modal.classList.add('hidden');
+                modal.classList.remove('flex');
             }, 300);
         }
 
@@ -610,19 +648,8 @@
         }
 
         document.getElementById('menu-toggle').addEventListener('click', function() {
-            const nav = document.querySelector('nav');
-            nav.classList.toggle('hidden');
-            nav.classList.toggle('flex');
-            nav.classList.toggle('flex-col');
-            nav.classList.toggle('absolute');
-            nav.classList.toggle('top-16');
-            nav.classList.toggle('left-0');
-            nav.classList.toggle('w-full');
-            nav.classList.toggle('bg-white');
-            nav.classList.toggle('p-4');
-            nav.classList.toggle('shadow-lg');
-            nav.classList.toggle('z-40');
-            nav.classList.toggle('items-start');
+            const nav = document.getElementById('mobile-nav');
+            nav.classList.toggle('active');
         });
 
         // Tab functionality
@@ -643,6 +670,11 @@
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.className += " active text-gray-800 border-primary";
             evt.currentTarget.className = evt.currentTarget.className.replace(" border-transparent", "");
+            
+            // Scroll to the active tab on mobile so it's fully visible
+            if (window.innerWidth < 768) {
+               evt.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
         }
 
         // Initialize slick carousel for testimonials
@@ -656,8 +688,8 @@
                 autoplay: true,
                 autoplaySpeed: 5000,
                 arrows: true,
-                prevArrow: '<button type="button" class="slick-prev absolute top-1/2 -left-4 md:-left-8 transform -translate-y-1/2 z-20 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"><i class="fas fa-chevron-left"></i></button>',
-                nextArrow: '<button type="button" class="slick-next absolute top-1/2 -right-4 md:-right-8 transform -translate-y-1/2 z-20 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"><i class="fas fa-chevron-right"></i></button>',
+                prevArrow: '<button type="button" class="slick-prev absolute top-[40%] md:top-1/2 -left-2 md:-left-8 transform -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"><i class="fas fa-chevron-left text-sm md:text-base"></i></button>',
+                nextArrow: '<button type="button" class="slick-next absolute top-[40%] md:top-1/2 -right-2 md:-right-8 transform -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors"><i class="fas fa-chevron-right text-sm md:text-base"></i></button>',
                 responsive: [
                     {
                         breakpoint: 768,
